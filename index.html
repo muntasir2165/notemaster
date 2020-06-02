@@ -28,12 +28,33 @@
             <textarea class="form-control" v-model="note.text"></textarea>
           </div>
         </div>
+        <button clas="btn btn-primary" @click="addNote">Submit</button>
       </div>
     </div>
     <script>
       var app = new Vue({
         el: '#app',
-        data: { title: 'Notemaster', note: { title: '', text: '' } },
+        data: {
+          title: 'Notemaster',
+          note: { title: '', text: '' },
+          notes: [
+            {
+              title: 'Visited Hawaii',
+              text: 'I loved the beaches and delicious fresh coconuts',
+              date: new Date(Date.now()).toLocaleString(),
+            },
+          ],
+        },
+        methods: {
+          addNote() {
+            let { title, text } = this.note;
+            this.notes.push({
+              title,
+              text,
+              date: new Date(Date.now()).toLocaleString(),
+            });
+          },
+        },
       });
     </script>
   </body>
